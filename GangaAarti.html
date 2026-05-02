@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ganga Aarti Wedding Kashi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-maroon: #6c1815;
+            --bg-cream: #f6efe5;
+            --text-dark: #333333;
+            --text-light: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--bg-cream);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--primary-maroon);
+        }
+
+        /* Header & Logo */
+        header {
+            background-color: var(--bg-cream);
+            text-align: center;
+            padding: 2rem 1rem;
+            border-bottom: 2px solid var(--primary-maroon);
+        }
+
+        .logo-container img {
+            max-width: 150px;
+            height: auto;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            overflow:none
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 2rem;
+            text-align: center;
+            background-color: var(--primary-maroon);
+            color: var(--text-light);
+        }
+
+        .hero h1 {
+            color: var(--text-light);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* Services & Galleries Section */
+        .service-section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-block {
+            margin-bottom: 4rem;
+        }
+
+        .service-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .service-header h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-header p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: #555;
+        }
+
+        /* 1. Base style (Mobile First): 1 column full width */
+        .gallery {
+            display: grid;
+            grid-template-columns: 1fr !important; 
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            aspect-ratio: 4/3;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Testimonials Carousel */
+        .testimonials {
+            background-color: #eaddc5;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .testimonials h2 {
+            margin-bottom: 2rem;
+        }
+
+        .carousel-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 2rem;
+            padding-bottom: 1rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            /* Hide scrollbar for a cleaner look */
+            -ms-overflow-style: none;  
+            scrollbar-width: none;  
+        }
+        
+        .carousel-container::-webkit-scrollbar { 
+            display: none; 
+        }
+
+        .review-card {
+            scroll-snap-align: center;
+            flex: 0 0 300px;
+            background: var(--bg-cream);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            border-top: 4px solid var(--primary-maroon);
+            text-align: left;
+        }
+
+        .review-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .review-author {
+            font-weight: bold;
+            color: var(--primary-maroon);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1rem; }
+            .review-card { flex: 0 0 80%; }
+            .gallery {
+                grid-template-columns: repeat(3, 1fr); /* 3 columns: 1/3rd width on desktop screens */
+            }
+        }
+
+        /* Floating Action Button (FAB) Container */
+        .fab-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* Space between the buttons */
+            z-index: 1000;
+        }
+
+        /* Base styling for all FABs */
+        .fab {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+            text-decoration: none;
+            color: var(--text-light);
+        }
+
+        .fab:hover {
+            transform: scale(1.1);
+        }
+
+        /* Specific colors for Email */
+        .fab.email {
+            background-color: var(--primary-maroon);
+            align-content: center;
+            padding-bottom: 10px !important;
+        }
+
+        .fab.email:hover {
+            background-color: #52110f;
+        }
+
+        /* Specific colors for WhatsApp */
+        .fab.whatsapp {
+            background-color: #25D366; /* Official WhatsApp Green */
+        }
+
+        .fab.whatsapp:hover {
+            background-color: #1ebe57; /* Slightly darker green on hover */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img src="Logo.jpg" alt="Ganga Aarti Wedding Kashi Logo">
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Experience the Divine Glow of Kashi</h1>
+        <p>Let the rhythmic chants and the mesmerizing light of the Ganga Aarti elevate your soul. We bring the profound and sacred traditions of Varanasi to your most cherished moments, offering authentic spiritual experiences, seamless wedding ceremonies, and private Aartis on the holy banks of the Ganges.</p>
+    </section>
+
+    <section class="service-section">
+        
+        <div class="service-block" id="aarti">
+            <div class="service-header">
+                <h2>Ganga Aarti</h2>
+                <p>Immerse yourself in the tranquility of our evening Aarti. Our dedicated priests perform this sacred ritual with deep devotion, offering light and prayers to the holy river, creating a mesmerizing atmosphere of spiritual awakening.</p>
+            </div>
+            <div class="gallery">
+                <div class="gallery-item"><img src="./GangaAarti1.jpg" alt="Ganga Aarti 1"></div>
+                <div class="gallery-item"><img src="./GangaAarti2.jpg" alt="Ganga Aarti 2"></div>
+                <div class="gallery-item"><img src="./GangaAarti3.jpg" alt="Ganga Aarti 3"></div>
+            </div>
+        </div>
+
+        <div class="service-block" id="wedding">
+            <div class="service-header">
+                <h2>Sacred Weddings</h2>
+                <p>Celebrate your union in the spiritual heart of India. We orchestrate traditional Vedic weddings, blending the deep sanctity of Kashi with meticulous planning, ensuring your special day is blessed, beautiful, and eternally memorable.</p>
+            </div>
+            <div class="gallery">
+                <div class="gallery-item"><img src="./Wedding1.jpg" alt="Wedding 1"></div>
+                <div class="gallery-item"><img src="./Wedding2.jpg" alt="Wedding 2"></div>
+                <div class="gallery-item"><img src="./Wedding3.jpg" alt="Wedding 3"></div>
+            </div>
+        </div>
+
+        <div class="service-block" id="spiritual">
+            <div class="service-header">
+                <h2>Spiritual Sessions</h2>
+                <p>Find inner peace and clarity. Our guided spiritual sessions, pujas, and personalized rituals are designed to connect you with ancient wisdom, offering solace, reflection, and profound spiritual rejuvenation.</p>
+            </div>
+            <div class="gallery">
+                <div class="gallery-item"><img src="./Spiritual1.jpg" alt="Spiritual Session 1"></div>
+                <div class="gallery-item"><img src="./Spiritual2.jpg" alt="Spiritual Session 2"></div>
+                <div class="gallery-item"><img src="./Spiritual3.jpg" alt="Spiritual Session 3"></div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="testimonials" id="reviews">
+        <h2>What Our Devotees Say</h2>
+        <div class="carousel-container">
+            <div class="review-card">
+                <p class="review-text">"A truly divine wedding experience. The arrangements were flawless, and getting married by the Ganga was a dream come true."</p>
+                <p class="review-author">- Priya & Rahul</p>
+            </div>
+            <div class="review-card">
+                <p class="review-text">"The private Ganga Aarti was breathtaking. The energy and devotion of the priests brought tears to my eyes. Highly recommend."</p>
+                <p class="review-author">- Amit Sharma</p>
+            </div>
+            <div class="review-card">
+                <p class="review-text">"Profound spiritual guidance. The puja arranged for our family brought us immense peace and a sense of deep connection."</p>
+                <p class="review-author">- Neha Verma</p>
+            </div>
+            <div class="review-card">
+                <p class="review-text">"Every detail of our event in Kashi was handled with reverence and professionalism. It felt incredibly authentic."</p>
+                <p class="review-author">- The Gupta Family</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="fab-container">
+        <!-- WhatsApp Button -->
+        <a href="https://wa.me/917318378357" target="_blank" class="fab whatsapp" aria-label="WhatsApp Us" title="WhatsApp Us">
+            <!-- Inline SVG for official WhatsApp logo -->
+            <img src="./WhatsApp.svg" alt="WA" width="30" height="30">
+        </a>
+        
+        <!-- Email Button -->
+        <a href="mailto:gangaarti07@gmail.com" class="fab email" aria-label="Email Us" title="Email Us">
+            ✉
+        </a>
+    </div>
+
+    <script>
+        // Optional JavaScript to auto-scroll the carousel slowly if desired
+        // Currently, it relies on modern CSS 'scroll-snap' for touch-friendly swiping
+        const carousel = document.querySelector('.carousel-container');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        // Allows mouse-drag scrolling on desktop
+        carousel.addEventListener('mousedown', (e) => {
+            isDown = true;
+            startX = e.pageX - carousel.offsetLeft;
+            scrollLeft = carousel.scrollLeft;
+        });
+        carousel.addEventListener('mouseleave', () => { isDown = false; });
+        carousel.addEventListener('mouseup', () => { isDown = false; });
+        carousel.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - carousel.offsetLeft;
+            const walk = (x - startX) * 2; 
+            carousel.scrollLeft = scrollLeft - walk;
+        });
+    </script>
+</body>
+</html>
